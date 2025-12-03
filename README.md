@@ -15,7 +15,7 @@ You are free to share and adapt for non-commercial use with attribution.
 
 ### Commercial Inquiries
 Tiered licensing, daily-drop retainers, domain monopolies, and full-portfolio acquisition available.  
-See pricing table: https://github.com/Joshoshfield-a11y/licensing  
+See pricing table: https://github.com/joshoshfield-a11y/licensing  
 Direct: ArchitectPrime38@proton.me 
 
 “GDS v1.0 was the gift. UCRS public is the proof. The closed-source version with 300 ms proofs and orbital triggers is Tier 4+ only.”
