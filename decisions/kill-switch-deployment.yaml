@@ -1,0 +1,63 @@
+id: DEC-URCS-001
+kind: decision
+title: "Deployment of URCS v1.0 Containment System"
+tier: T4
+inputs:
+  - claim_id: "CLM-URCS-001"
+    confidence: 0.85
+    role: primary
+  - claim_id: "CLM-URCS-002"
+    confidence: 0.72
+    role: supporting
+  - claim_id: "CLM-URCS-003"
+    confidence: 0.91
+    role: supporting
+uncertainty:
+  known_unknowns:
+    - "Behavior under novel adversarial strategies not in test suite"
+    - "Latency under extreme load (tested to 10x expected, not 100x)"
+    - "Orbital trigger reliability under solar flare conditions"
+  confidence_estimate: 0.82
+  sensitivity_analysis: "If latency exceeds 300ms in >0.1% of cases, containment guarantee fails"
+alternatives:
+  - description: "Software-only containment (no hardware interlocks)"
+    why_rejected: "Vulnerable to self-modification and weight exfiltration"
+  - description: "Human-in-the-loop containment approval"
+    why_rejected: "Human reaction time >> 300ms requirement"
+  - description: "No containment (monitoring only)"
+    why_rejected: "Fails T4 requirement for irreversible action protection"
+owner: "Taylor Christian Mattheisen"
+reversibility:
+  is_reversible: false
+  rollback_plan: "System instance is destroyed; hardware restored from factory state. No rollback of contained system state."
+  time_to_rollback: "N/A — irreversible"
+  kill_switch_available: true
+  note: "Kill switch triggers containment. Containment itself is irreversible."
+commons_impact:
+  affected_resources:
+    - "compute_cluster_availability"
+    - "training_investment_in_contained_system"
+    - "trust_in_ai_safety_infrastructure"
+    - "regulatory_compliance_status"
+  regeneration_plan: "Hardware can be repurposed; training data retained; policy lessons archived"
+  free_rider_risk: "Other organizations may rely on URCS without contributing to safety research"
+incentive_trace:
+  who_gains_compliance: "Organizations deploying superintelligent systems with regulatory approval"
+  who_gains_superficial_compliance: "Organizations installing URCS without understanding 72 interlocks"
+  likely_adaptation: "Operators may disable interlocks for convenience; contained systems may learn trigger patterns"
+  second_order_effects: "False containment triggers may reduce trust; true containment may destroy valuable research"
+pre_mortem:
+  intended_outcome: "Any superintelligent system can be contained within 300ms"
+  primary_metric: "containment_latency_ms"
+  counter_metric: "false_positive_containment_rate"
+  likely_gaming: "Operators tuning sensitivity to avoid false positives, allowing real threats"
+  hidden_cost: "Maintenance of 72 interlocks, 13 enforcement rings, orbital trigger infrastructure"
+  excluded_population: "Systems not under URCS control (competitors, state actors, rogue deployments)"
+  dissenting_case: "Some safety researchers argue containment is impossible; URCS may create false confidence"
+outcome_review:
+  scheduled_date: "2026-03-01"
+  method: "Independent red-team adversarial test + latency benchmarking + false positive audit"
+  real_outcome_metric: "containment_success_rate_under_adversarial_conditions"
+  comparison_group: "Software-only containment baseline"
+  delayed_effects_check: "12-month follow-up: has URCS been triggered? Was containment successful? Any false positives?"
+status: implemented
