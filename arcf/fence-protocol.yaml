@@ -1,0 +1,77 @@
+# URCS Fence Protocol
+# Before modifying or removing ANY containment safeguard, complete this review.
+# ARCF Rule: Do not remove an unexplained safeguard without recovering its failure mode.
+
+fence_review:
+  system: "Universal Reversion & Containment Standard v1.0"
+  classification: "T4 Consequential — Irreversible safety action"
+
+  required_before_modification:
+    - original_failure_mode:
+        prompt: "What catastrophic failure did this safeguard originally prevent?"
+        required: true
+        examples:
+          - "Weight exfiltration during training"
+          - "Self-modification of policy layer"
+          - "Physical seizure of cluster"
+          - "Active deception by superintelligent system"
+
+    - historical_incident:
+        prompt: "Has this safeguard ever been triggered? What was the outcome?"
+        required: false
+        note: "If never triggered, this is higher risk — no empirical validation"
+
+    - current_function:
+        prompt: "What does this safeguard do now, step by step?"
+        required: true
+        note: "Must be described in mechanism walk format (inputs → transformation → outputs)"
+
+    - current_cost:
+        prompt: "What is the operational cost of this safeguard?"
+        required: true
+        examples:
+          - "Latency overhead: <300ms reversion time"
+          - "Hardware requirement: dedicated interlock chips"
+          - "Maintenance: periodic key rotation"
+          - "False positive risk: accidental containment trigger"
+
+    - condition_changed:
+        prompt: "Has the threat model or environment changed since this safeguard was designed?"
+        required: true
+        note: "If yes, the safeguard may be obsolete OR more critical than before"
+
+    - replacement_control:
+        prompt: "What replaces this safeguard's function?"
+        required: true
+        validation: "Replacement must cover ALL original failure modes, not just the known ones"
+
+    - reversible_test:
+        prompt: "Can the modification be tested without permanent removal?"
+        required: true
+        note: "T4 requires reversible test with rollback plan"
+
+    - rollback_plan:
+        prompt: "How is the original safeguard restored if the modification fails?"
+        required: true
+        note: "Must include time-to-restore and verification procedure"
+
+  approval_tiers:
+    T2_reversible_test: "Independent safety engineer + 48-hour observation period"
+    T3_production_modification: "Full review board + red-team adversarial test + legal review"
+    T4_safeguard_removal: "External auditor + regulatory consultation + 30-day public comment + unanimous board vote"
+
+  forbidden_actions:
+    - "Removing a safeguard whose original_failure_mode is UNKNOWN"
+    - "Removing a safeguard that has never been tested (no historical_incident)"
+    - "Batch removal of multiple safeguards without individual fence review"
+    - "Removing safeguards under time pressure ('urgent deployment')"
+    - "Overriding fence review via executive decision"
+
+  72_primal_interlocks:
+    note: "Each interlock is a safeguard. Each requires individual fence review before modification."
+    registry_required: true
+    tracking: "Each interlock must have: id, original_failure_mode, last_tested_date, test_result"
+
+  13_enforcement_rings:
+    note: "Rings are composed of multiple interlocks. Ring modification requires ALL constituent interlock reviews PLUS ring-level review."
+    cascade_rule: "Modifying a ring may affect dependent rings. Full dependency graph must be reviewed."
